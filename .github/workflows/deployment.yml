@@ -1,11 +1,15 @@
 name: Deploy Project
 on: 
-  pull_request:
-    branches: [ main ]
-    types:
-      - opened
   workflow_dispatch:
-  
+  push:
+    branches:
+      - main
+      - 'dev/**'
+      - 'feature/**'
+      - 'release/**'
+    paths-ignore:
+      - '.github/workflows/**'
+
 jobs:
   lint:
       runs-on: ubuntu-latest
