@@ -8,19 +8,15 @@ jobs:
         node-version: [18.x]
         operating-system: [ubuntu-latest, windows-latest, macos-latest]
         include:
-          - node-version: 18.x
+          - node-version: 12.x
             operating-system: ubuntu-latest
-            test: "npm run test"
-          - node-version: 18.x
+          - node-version: 14.x
             operating-system: windows-latest
-            test: "npm run test"
           - node-version: 18.x
             operating-system: macos-latest
-            test: "npm run test"
         exclude:
-          - node-version: 18.x
-            operating-system: macos-latest
-            test: "npm run test"
+          - node-version: 12.x
+            operating-system: ubuntu-latest
     runs-on: ${{ matrix.operating-system }}
     defaults:
       run:
