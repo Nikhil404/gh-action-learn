@@ -1,5 +1,14 @@
 name: Matrix Demo
-on: [push]
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev/**'
+      - 'feature/**'
+      - 'release/**'
+    paths-ignore:
+      - '.github/workflows/**'
 jobs:
   build:
     continue-on-error: true
