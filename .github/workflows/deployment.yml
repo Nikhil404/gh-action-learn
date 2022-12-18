@@ -103,3 +103,11 @@ jobs:
           run: echo "${{ needs.build.outputs.script-file }}"
         - name: Deploy to github pages
           run: echo "Deploying to github pages ..."
+  report:
+      if: failure()
+      runs-on: ubuntu-latest
+      steps:
+        - name: Output information
+          run: |
+            echo "Something went wrong!"
+            echo "${{ github }}"
