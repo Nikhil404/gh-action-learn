@@ -1,4 +1,4 @@
-name: Deploy Project
+name: Deploy Project FrontEnd
 on: 
   workflow_dispatch:
   push:
@@ -9,10 +9,14 @@ on:
       - 'release/**'
     paths-ignore:
       - '.github/workflows/**'
+  
 
 jobs:
   lint:
       runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./frontend
       steps: 
         - name: Get code
           uses: actions/checkout@v3
