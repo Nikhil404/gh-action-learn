@@ -43,7 +43,7 @@ jobs:
           kill-port --port $PORT
           npm start & npx wait-on http://127.0.0.1:$PORT
       - name: Run tests
-        if: steps.run-server.outcome == 'failure'
+        if: failure() && steps.run-server.outcome == 'failure'
         run: npm test
       - name: Output information
         run: echo "MONGODB_USERNAME:${{ env.MONGODB_USERNAME }}"
