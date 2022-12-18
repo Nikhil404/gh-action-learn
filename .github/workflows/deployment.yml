@@ -21,11 +21,13 @@ jobs:
         - name: Get code
           uses: actions/checkout@v3
         - name: Cache dependencies
+          id: cache-dependencies
           uses: actions/cache@v3
           with:
-            path: ~/.npm
+            path: node_modules
             key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-        - name: Install dependencies
+        - name: Install Dependencies
+          if: steps.cache-dependencies.outputs.cache-hit != 'true'
           run: |
             npm install
             npm ci
@@ -45,11 +47,13 @@ jobs:
           with:
             node-version: 18
         - name: Cache dependencies
+          id: cache-dependencies
           uses: actions/cache@v3
           with:
-            path: ~/.npm
+            path: node_modules
             key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
         - name: Install Dependencies
+          if: steps.cache-dependencies.outputs.cache-hit != 'true'
           run: |
             npm install
             npm ci
@@ -71,11 +75,13 @@ jobs:
           with:
             node-version: 18
         - name: Cache dependencies
+          id: cache-dependencies
           uses: actions/cache@v3
           with:
-            path: ~/.npm
+            path: node_modules
             key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
         - name: Install Dependencies
+          if: steps.cache-dependencies.outputs.cache-hit != 'true'
           run: |
             npm install
             npm ci
